@@ -2,8 +2,27 @@ import './App.css';
 import {Container} from 'react-bootstrap'
 import { AddTaskForm } from './components/AddTaskForm';
 import { ListArea } from './components/ListArea';
+import { useState } from 'react';
 
 function App() {
+
+  const [taskList, setTaskList] = useState([])
+
+  const addTask = task => {
+    setTaskList([...taskList, task])
+  }
+
+  const switchTask = (i, type) => {
+    const switchedArg = taskList.map((item, index)=> {
+      if (index === i) {
+        const dt = (item.type = type)
+      return dt
+      }
+      return item
+    })
+
+    setTaskList(switchedArg)
+  }
   return (
     <div className="wrapper">
       <Container>
@@ -11,11 +30,11 @@ function App() {
           Task Management
         </h1>
       {/* form comp */}
-      <AddTaskForm/>
+      <AddTaskForm addTask= {addTask}/>
       <hr className='mt-5'/>
     {/* List component */}
 
-    <ListArea/>
+    <ListArea taskList= {taskList} switchTask = {switchTask}/>
 
 
       </Container>

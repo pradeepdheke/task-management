@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
 
-export const TaskList = ({title, tableColor, arrow}) => {
+export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
   return (
     <div className='mt-3'>
         <h2 className='text-center'>{title}</h2>
@@ -16,21 +16,26 @@ export const TaskList = ({title, tableColor, arrow}) => {
           <th>Hours</th>
           <th>Action</th>
         </tr>
-      </thead>
+        </thead>
       <tbody>
+        {list.map((item, i)=> {
+            return (
         <tr>
           <td className='text-center'>
             <Form.Check type="checkbox" />
           </td>
-          <td>Play</td>
-          <td>5hrs</td>
-          <td>
-                <Button variant='danger'>
-            <i class="fa-solid fa-trash-can"></i>
-            </Button>
+          <td>{item.task}</td>
+            {item.hr>1?(
+
+                <td>{item.hr} hrs</td>
+                ):(
+                <td>{item.hr} hr</td>
+            )
+            }
+            <td>
             {arrow === "right" ? (
 
-            <Button variant='warning'>
+            <Button variant='warning' onClick={()=> switchTask(i)}>
             <i class="fa-solid fa-arrow-right"></i>
             </Button>
             ) : (
@@ -43,6 +48,9 @@ export const TaskList = ({title, tableColor, arrow}) => {
         }
           </td>
         </tr>
+
+            )
+        })}
        
       </tbody>
     </Table>
