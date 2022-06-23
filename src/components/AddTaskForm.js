@@ -7,7 +7,7 @@ export const AddTaskForm = () => {
   return (
     <Form>
       <Row className='g-2'>
-        <Col md="6">
+        <Col md="7">
           <Form.Control placeholder="Task name" required />
         </Col>
         <Col md='3'>
