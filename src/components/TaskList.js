@@ -35,15 +35,24 @@ export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
             <td>
             {arrow === "right" ? (
 
+            
+            <div className='text-center'>
+              <Button variant='danger' onClick={()=> switchTask(item.id, "bad")}>
+            <i class="fa-solid fa-trash-can"></i>
+            </Button>
             <Button variant='warning' onClick={()=> switchTask(item.id, "bad")}>
             <i class="fa-solid fa-arrow-right"></i>
             </Button>
+            </div>
             ) : (
-
+              <div className='text-center'>
             <Button variant='primary' onClick={()=> switchTask(item.id, "entry")}>
             <i class="fa-solid fa-arrow-left"></i>
-            
             </Button>
+            <Button variant='danger' onClick={()=> switchTask(item.id, "bad")}>
+            <i class="fa-solid fa-trash-can"></i>
+            </Button>
+              </div>
             )
         }
           </td>
