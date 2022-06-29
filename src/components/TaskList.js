@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
 
-export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
+export const TaskList = ({title, tableColor, arrow, list=[], switchTask, ids, name, handleOnCheck}) => {
   return (
     <div className='mt-3'>
         <h2 className='text-center'>{title}</h2>
@@ -10,7 +10,8 @@ export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
       <thead>
         <tr>
           <th>
-      
+          <Form.Check type="checkbox" value={name} onChange={handleOnCheck}/>
+
           </th>
           <th>Task Name</th>
           <th>Hours</th>
@@ -22,7 +23,7 @@ export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
             return (
         <tr>
           <td className='text-center'>
-            <Form.Check type="checkbox" />
+          <Form.Check type="checkbox"  value ={item.id} checked={ids.includes(item.id)} onChange={handleOnCheck}/>
           </td>
           <td>{item.task}</td>
             {item.hr>1?(
@@ -37,9 +38,7 @@ export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
 
             
             <div className='text-center'>
-              <Button variant='danger' onClick={()=> switchTask(item.id, "bad")}>
-            <i class="fa-solid fa-trash-can"></i>
-            </Button>
+              
             <Button variant='warning' onClick={()=> switchTask(item.id, "bad")}>
             <i class="fa-solid fa-arrow-right"></i>
             </Button>
@@ -48,9 +47,6 @@ export const TaskList = ({title, tableColor, arrow, list=[], switchTask}) => {
               <div className='text-center'>
             <Button variant='primary' onClick={()=> switchTask(item.id, "entry")}>
             <i class="fa-solid fa-arrow-left"></i>
-            </Button>
-            <Button variant='danger' onClick={()=> switchTask(item.id, "bad")}>
-            <i class="fa-solid fa-trash-can"></i>
             </Button>
               </div>
             )
